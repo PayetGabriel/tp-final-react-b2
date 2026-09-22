@@ -3,7 +3,7 @@ import { useParams, Link } from 'react-router-dom'
 import type { MealDetail } from '../types'
 import { getIngredients } from '../utils'
 
-function Recette() {
+export default function Recette() {
   const { id } = useParams()
   const [meal, setMeal] = useState<MealDetail | null>(null)
   const [loading, setLoading] = useState(true)
@@ -67,5 +67,3 @@ function Recette() {
     </div>
   )
 }
-
-export default Recette
