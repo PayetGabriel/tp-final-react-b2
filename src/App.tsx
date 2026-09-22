@@ -1,17 +1,32 @@
-import { Routes, Route, Link } from 'react-router-dom'
+import { Routes, Route, NavLink } from 'react-router-dom'
 import Home from './pages/Home'
 import Recette from './pages/Recette'
 import Selection from './pages/Selection'
 import Contact from './pages/Contact'
 import NotFound from './pages/NotFound'
+import './App.css'
 
-export default function App() {
+function getLienClassName(estActif: boolean) {
+  if (estActif) {
+    return 'lien-actif'
+  } else {
+    return ''
+  }
+}
+
+function App() {
   return (
     <div>
       <nav>
-        <Link to="/">Accueil</Link>
-        <Link to="/selection">Ma sélection</Link>
-        <Link to="/contact">Contact</Link>
+        <NavLink to="/" end className={({ isActive }) => getLienClassName(isActive)}>
+          Accueil
+        </NavLink>
+        <NavLink to="/selection" className={({ isActive }) => getLienClassName(isActive)}>
+          Ma sélection
+        </NavLink>
+        <NavLink to="/contact" className={({ isActive }) => getLienClassName(isActive)}>
+          Contact
+        </NavLink>
       </nav>
 
       <Routes>
@@ -24,3 +39,5 @@ export default function App() {
     </div>
   )
 }
+
+export default App
