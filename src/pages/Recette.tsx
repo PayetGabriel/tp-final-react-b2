@@ -2,12 +2,22 @@ import { useEffect, useState } from 'react'
 import { useParams, Link } from 'react-router-dom'
 import type { MealDetail } from '../types'
 import { getIngredients } from '../utils'
+import { useSelection } from '../SelectionContext.tsx'
+
+function getTexteBouton(dansSelection: boolean) {
+  if (dansSelection) {
+    return 'Retirer de ma sélection'
+  } else {
+    return 'Ajouter à ma sélection'
+  }
+}
 
 export default function Recette() {
   const { id } = useParams()
   const [meal, setMeal] = useState<MealDetail | null>(null)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState('')
+  const { ajouterSelection, retirerSelection, estDansSelection } = useSelection()
 
   useEffect(() => {
     setLoading(true)
@@ -48,12 +58,27 @@ export default function Recette() {
   }
 
   const ingredients = getIngredients(meal)
+  const dansSelection = estDansSelection(meal.idMeal)
+
+  function toggleSelection() {
+    if (meal === null) {
+      return
+    }
+
+    if (dansSelection) {
+      retirerSelection(meal.idMeal)
+    } else {
+      ajouterSelection(meal)
+    }
+  }
 
   return (
     <div>
       <h1>{meal.strMeal}</h1>
       <img src={meal.strMealThumb} alt={meal.strMeal} width="300" />
       <p>{meal.strCategory} - {meal.strArea}</p>
+
+      <button onClick={toggleSelection}>{getTexteBouton(dansSelection)}</button>
 
       <h2>Ingrédients</h2>
       <ul>
