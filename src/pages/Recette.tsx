@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { useParams, Link } from 'react-router-dom'
 import type { MealDetail } from '../types'
 import { getIngredients } from '../utils'
-import { useSelection } from '../SelectionContext.tsx'
+import { useSelection } from '../SelectionContext'
 
 function getTexteBouton(dansSelection: boolean) {
   if (dansSelection) {
