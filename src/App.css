@@ -69,13 +69,33 @@ select {
   font-size: 15px;
 }
 
-input[type="text"] {
+input[type="text"]:has(+ select) {
   min-width: 260px;
   margin-right: 8px;
 }
 
 input[type="text"]:focus,
 select:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-bg);
+}
+
+textarea {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 14px 18px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  background: var(--bg);
+  color: var(--text-h);
+  font-size: 15px;
+  font-family: inherit;
+  min-height: 120px;
+  resize: vertical;
+}
+
+textarea:focus {
   outline: none;
   border-color: var(--accent);
   box-shadow: 0 0 0 3px var(--accent-bg);
