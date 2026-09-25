@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { useSelection } from '../SelectionContext'
+import { useSelection } from '../SelectionContext.tsx'
 
 export default function Selection() {
   const { selection, retirerSelection } = useSelection()
